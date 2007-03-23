@@ -17,7 +17,7 @@ namespace iCodeGenerator.UnitTests
 		[SetUp]
 		public void SetUp()
 		{
-			Server.ConnectionString = @"SERVER=(local);DATABASE=;UID=sa;PWD=m14m14;";
+			Server.ConnectionString = @"SERVER=SAM\NETSDK;DATABASE=;UID=sa;PWD=s4ms4m;";
 			Server.ProviderType = DataProviderType.SqlClient;
 			Context.StartDelimeter = "{";
 			Context.EndingDelimiter = "}";
@@ -209,6 +209,25 @@ LAST{/IF}
 			columns.AddExpression(new ColumnNameMatchesExpression());
 			_parser.AddExpression(columns);
 			_parser.Interpret(_context);
+		}
+		
+		[Test]
+		public void TestColumnNaming()
+		{
+			_context.Input = @"{TABLE.COLUMNS}" +
+			                 @"Normal: {COLUMN.NAME}" + "\n" +
+//			                 @"Camel: {COLUMN.NAME CAMEL}" + "\n" +
+//			                 @"Pascal: {COLUMN.NAME PASCAL}" + "\n" +
+//			                 @"Upper: {COLUMN.NAME UPPER}" + "\n" +
+//			                 @"Lower: {COLUMN.NAME LOWER}" + "\n" +
+			                 @"Underscore: {COLUMN.NAME UNDERSCORE}" + "\n" +
+			                 @"Human: {COLUMN.NAME HUMAN}" + "\n" +
+							 @"{/TABLE.COLUMNS}";
+			ColumnsExpression columns = new ColumnsExpression();	
+			columns.AddExpression(new ColumnNameExpression());
+			_parser.AddExpression(columns);
+			_parser.Interpret(_context);
+//			Console.WriteLine(_context.Output);
 		}
 	}	
 }

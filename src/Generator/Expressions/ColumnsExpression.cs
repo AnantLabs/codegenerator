@@ -6,6 +6,8 @@ namespace iCodeGenerator.Generator
 {
 	public class ColumnsExpression : Expression
 	{
+		private const string PRIMARY = "PRIMARY";
+		private	const string NOPRIMARY = "NOPRIMARY";
 		private ArrayList _expressions;
 		public ColumnsExpression()
 		{
@@ -43,13 +45,16 @@ namespace iCodeGenerator.Generator
 
 		private bool IsValidColumn(Column column, string selectionString)
 		{
-			if(selectionString == "PRIMARY" && !column.IsPrimaryKey)
+			if(selectionString == PRIMARY && !column.IsPrimaryKey)
 			{
 				return false;
 			}
-			else if( selectionString == "NOPRIMARY" && column.IsPrimaryKey)
+			else
 			{
-				return false;
+				if( selectionString == NOPRIMARY && column.IsPrimaryKey)
+				{
+					return false;
+				}
 			}
 			return true;
 		}
