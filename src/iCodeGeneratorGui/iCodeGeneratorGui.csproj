@@ -7,7 +7,7 @@
     >
         <Build>
             <Settings
-                ApplicationIcon = "iCodeLogo16.ico"
+                ApplicationIcon = "iCodeLogo.ico"
                 AssemblyKeyContainerName = ""
                 AssemblyName = "iCodeGeneratorGui"
                 AssemblyOriginatorKeyFile = ""
@@ -180,16 +180,6 @@
                 <File
                     RelPath = "DirectorySelectionWindow.resx"
                     DependentUpon = "DirectorySelectionWindow.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "GeneratingWindow.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "GeneratingWindow.resx"
-                    DependentUpon = "GeneratingWindow.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

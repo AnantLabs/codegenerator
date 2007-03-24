@@ -37,7 +37,7 @@ namespace iCodeGenerator.Generator
 			}
 			else
 			{
-				strValue = "undefined";
+				strValue = "object";
 			}
 			
 			context.Output = Regex.Replace(context.Input,Context.StartDelimeter + "MAP COLUMN.TYPE" + Context.EndingDelimiter,strValue);

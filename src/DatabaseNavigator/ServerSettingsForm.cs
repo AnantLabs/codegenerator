@@ -19,6 +19,7 @@ namespace iCodeGenerator.DatabaseNavigator
 		private ToolTip uiMessageToolTip;
 		private System.Windows.Forms.ComboBox uiConnectionStringComboList;
 		private System.Windows.Forms.Button uiCancel;
+		private System.Windows.Forms.Label uiConnectionStringHelp;
 		private IContainer components;
 		#endregion
 
@@ -78,6 +79,7 @@ namespace iCodeGenerator.DatabaseNavigator
 			this.uiMessageToolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.uiConnectionStringComboList = new System.Windows.Forms.ComboBox();
 			this.uiCancel = new System.Windows.Forms.Button();
+			this.uiConnectionStringHelp = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// uiConnectionStringLabel
@@ -96,7 +98,7 @@ namespace iCodeGenerator.DatabaseNavigator
 			// 
 			// uiTestConnectionButton
 			// 
-			this.uiTestConnectionButton.Location = new System.Drawing.Point(23, 72);
+			this.uiTestConnectionButton.Location = new System.Drawing.Point(23, 104);
 			this.uiTestConnectionButton.Name = "uiTestConnectionButton";
 			this.uiTestConnectionButton.Size = new System.Drawing.Size(128, 23);
 			this.uiTestConnectionButton.TabIndex = 10;
@@ -114,7 +116,7 @@ namespace iCodeGenerator.DatabaseNavigator
 			// 
 			// uiSaveConnectionButton
 			// 
-			this.uiSaveConnectionButton.Location = new System.Drawing.Point(183, 72);
+			this.uiSaveConnectionButton.Location = new System.Drawing.Point(183, 104);
 			this.uiSaveConnectionButton.Name = "uiSaveConnectionButton";
 			this.uiSaveConnectionButton.Size = new System.Drawing.Size(128, 23);
 			this.uiSaveConnectionButton.TabIndex = 20;
@@ -131,19 +133,30 @@ namespace iCodeGenerator.DatabaseNavigator
 			// uiCancel
 			// 
 			this.uiCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.uiCancel.Location = new System.Drawing.Point(343, 72);
+			this.uiCancel.Location = new System.Drawing.Point(343, 104);
 			this.uiCancel.Name = "uiCancel";
 			this.uiCancel.Size = new System.Drawing.Size(128, 23);
 			this.uiCancel.TabIndex = 25;
 			this.uiCancel.Text = "Cancel";
 			this.uiCancel.Click += new System.EventHandler(this.uiCancel_Click);
 			// 
+			// uiConnectionStringHelp
+			// 
+			this.uiConnectionStringHelp.Font = new System.Drawing.Font("Courier New", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.uiConnectionStringHelp.ForeColor = System.Drawing.SystemColors.WindowText;
+			this.uiConnectionStringHelp.Location = new System.Drawing.Point(15, 72);
+			this.uiConnectionStringHelp.Name = "uiConnectionStringHelp";
+			this.uiConnectionStringHelp.Size = new System.Drawing.Size(464, 23);
+			this.uiConnectionStringHelp.TabIndex = 26;
+			this.uiConnectionStringHelp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// ServerSettingsForm
 			// 
 			this.AcceptButton = this.uiSaveConnectionButton;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.uiCancel;
-			this.ClientSize = new System.Drawing.Size(494, 104);
+			this.ClientSize = new System.Drawing.Size(494, 136);
+			this.Controls.Add(this.uiConnectionStringHelp);
 			this.Controls.Add(this.uiCancel);
 			this.Controls.Add(this.uiConnectionStringComboList);
 			this.Controls.Add(this.uiConnectionStringLabel);
@@ -210,7 +223,9 @@ namespace iCodeGenerator.DatabaseNavigator
 		{
 			if ( uiProviderTypeSelection.SelectedIndex >= 0 )
 			{
-				uiMessageToolTip.SetToolTip(uiConnectionStringComboList, new DataAccessProviderInfo(((DataAccessProviderInfo) uiProviderTypeSelection.SelectedItem).ProviderType).ConnectionStringFormat);
+				string connectionStringFormat = new DataAccessProviderInfo(((DataAccessProviderInfo) uiProviderTypeSelection.SelectedItem).ProviderType).ConnectionStringFormat;
+				uiConnectionStringHelp.Text = connectionStringFormat;
+				uiMessageToolTip.SetToolTip(uiConnectionStringComboList, connectionStringFormat);
 				uiConnectionStringComboList.Focus();
 			}
 		}

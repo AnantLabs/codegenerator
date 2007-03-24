@@ -18,10 +18,10 @@ namespace iCodeGenerator.GenericDataAccess
 			@"Postgres Server Connection Type"
 													 };
 		private string[] _ConnectionStringFormat = new string [] {
-			@"SERVER=<SERVER>;DATABASE=;UID=<USERNAME>;PWD=<PASSWORD>;",
-			@"Data Source=;Password=<PASSWORD>;User ID=<USERNAME>;Location=<SERVER>;",
+			@"SERVER=<SERVER>;UID=<USERNAME>;PWD=<PASSWORD>;",
+			@"Location=<SERVER>;User ID=<USERNAME>;Password=<PASSWORD>;",
 			@"",
-			@"Server=<SERVER>;Port=<PORT>;User Id=<USERNAME>;Password=<PASSWORD>;Database=;"
+			@"Server=<SERVER>;Port=<PORT>;User Id=<USERNAME>;Password=<PASSWORD>;"
 		};
 
 		private DataProviderType _ProviderType;

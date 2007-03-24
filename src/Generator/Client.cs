@@ -81,6 +81,7 @@ namespace iCodeGenerator.Generator
 			columnsExp.AddExpression(new ColumnMapTypeExpression());
 			columnsExp.AddExpression(new ColumnIfExpression());
 			columnsExp.AddExpression(new ColumnIfNullableExpression());
+			columnsExp.AddExpression(new ColumnNameMatchesExpression()); 
 			parser.AddExpression(columnsExp);
 			parser.AddExpression(new TableNameExpression());
 			parser.AddExpression(new DatabaseNameExpression());
