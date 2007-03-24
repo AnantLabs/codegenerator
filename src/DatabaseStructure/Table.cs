@@ -24,13 +24,17 @@ namespace iCodeGenerator.DatabaseStructure
 			{
 				_strategy = new ColumnStrategySQLServer();
 			}
-			if(Server.ProviderType == DataProviderType.MySql)
+			else if(Server.ProviderType == DataProviderType.MySql)
 			{
 				_strategy = new ColumnStrategyMySQL();
 			}
-			if(Server.ProviderType == DataProviderType.PostgresSql)
+			else if(Server.ProviderType == DataProviderType.PostgresSql)
 			{
 				_strategy = new ColumnStrategyPostgres();
+			}
+			else if(Server.ProviderType == DataProviderType.Oracle)
+			{
+				_strategy = new ColumnStrategyOracle();
 			}
 		}
 

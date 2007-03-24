@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using iCodeGenerator.GenericDataAccess;
 
@@ -15,7 +16,17 @@ namespace iCodeGenerator.DatabaseStructure
 				connection.Open();	
 			}			
 			connection.ChangeDatabase(database.Name);
-			DataSet ds = TableSchema(dataAccessProviderFactory, connection);
+			DataSet ds; 
+			if (Server.ProviderType != DataProviderType.Oracle)
+			{
+				connection.ChangeDatabase(database.Name);
+				ds = TableSchema(dataAccessProviderFactory, connection);
+			}
+			else
+			{
+				ds = TableSchema(dataAccessProviderFactory, connection, database);
+			}
+	
 			connection.Close();
 
 			/* Changed by Ferhat */
@@ -52,9 +63,9 @@ namespace iCodeGenerator.DatabaseStructure
 			return tables;
 		}
 
-		/* Add by Ferhat */
 		protected abstract DataSet ViewSchema(DataAccessProviderFactory dataAccessProvider, IDbConnection connection);
 		protected abstract DataSet TableSchema(DataAccessProviderFactory dataAccessProvider,IDbConnection connection);
+		protected virtual DataSet TableSchema(DataAccessProviderFactory dataAccessProvider,IDbConnection connection, Database database) { throw new NotImplementedException(); }
 		protected abstract Table CreateTable(Database database, DataRow row);
 	}
 }

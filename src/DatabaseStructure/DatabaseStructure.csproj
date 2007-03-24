@@ -209,6 +209,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Oracle\ColumnStrategyOracle.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Oracle\DatabaseStrategyOracle.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Oracle\TableStrategyOracle.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Postgres\ColumnStrategyPostgres.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

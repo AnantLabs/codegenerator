@@ -17,10 +17,9 @@ namespace iCodeGenerator.DatabaseStructure
 			return ds;
 		}
 
-		/* Add by Ferhat */
 		protected override DataSet ViewSchema(DataAccessProviderFactory dataAccessProvider, IDbConnection connection)
 		{
-			throw new System.Exception("The method or operation is not implemented.");
+			return new DataSet();
 		}
 		protected override Table CreateTable(Database database, DataRow row)
 		{

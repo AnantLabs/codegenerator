@@ -10,8 +10,7 @@ namespace iCodeGenerator.DatabaseStructure
 		private TableStrategy _strategy;
 		private bool _reload;
 		private TableCollection _tables;
-
-		/* Add by Ferhat */
+		
 		private TableCollection _views;
 
 		public Database()
@@ -27,6 +26,10 @@ namespace iCodeGenerator.DatabaseStructure
 			else if(Server.ProviderType == DataProviderType.PostgresSql)
 			{
 				_strategy = new TableStrategyPostgres();
+			}
+			else if (Server.ProviderType == DataProviderType.Oracle)
+			{
+				_strategy = new TableStrategyOracle();
 			}
 		}
 
@@ -58,7 +61,6 @@ namespace iCodeGenerator.DatabaseStructure
 			}
 		}
 
-		/* Add by Ferhat */
 		[BrowsableAttribute(false),
 		DefaultValueAttribute(false)]
 		public TableCollection Views

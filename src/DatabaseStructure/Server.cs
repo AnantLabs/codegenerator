@@ -21,6 +21,26 @@ namespace iCodeGenerator.DatabaseStructure
 			get { return _providerType; }
 			set { _providerType = value; }
 		}
+		
+		public DatabaseCollection Databases
+		{
+			get
+			{
+				if(_reload || _databases == null)
+				{
+					_databases = _strategy.GetDatabases();
+				}
+				return _databases;
+			}
+		}
+
+		public Database SelectedDatabase
+		{
+			get
+			{				
+				return _strategy.SelectedDatabase;
+			}
+		}
 
 		public static string ConnectionString
 		{
@@ -53,32 +73,15 @@ namespace iCodeGenerator.DatabaseStructure
 			{
 				_strategy = new DatabaseStrategyPostgres();
 			}
+			else if(_providerType == DataProviderType.Oracle)
+			{
+				_strategy = new DatabaseStrategyOracle();
+			}
 		}
 
 		#endregion
 
-		public DatabaseCollection Databases
-		{
-			get
-			{
-				if(_reload || _databases == null)
-				{
-					_databases = _strategy.GetDatabases();
-				}
-				return _databases;
-			}
-		}
+	
 
-		public Database SelectedDatabase
-		{
-			get
-			{				
-				return _strategy.SelectedDatabase;
-			}
-		}
-
-
-
-		
 	}
 }

@@ -2,6 +2,7 @@ using System;
 using System.Data.SqlClient;
 using System.Data.OleDb;
 using MySQLDriverCS;
+using System.Data.OracleClient;
 using Npgsql;
 
 namespace iCodeGenerator.GenericDataAccess
@@ -11,7 +12,9 @@ namespace iCodeGenerator.GenericDataAccess
 		SqlClient,
 		MySql,
 		Access,
-		PostgresSql
+		PostgresSql,
+		Oracle,
+		ODBC
 	}
 
 	public class DataAccessProviderTypeFactory
@@ -23,24 +26,30 @@ namespace iCodeGenerator.GenericDataAccess
 								typeof(SqlConnection),
 								typeof(MySQLConnection), 
 								typeof(OleDbConnection), 
-								typeof(NpgsqlConnection) 
+								typeof(NpgsqlConnection),
+								typeof(OracleConnection)
 								};
 		private Type[] _commandType = new Type[] { 
 								typeof(SqlCommand),
 								typeof(MySQLCommand),
 								typeof(OleDbCommand), 
-								typeof(NpgsqlCommand) 
+								typeof(NpgsqlCommand),
+								typeof(OracleCommand),
 								 };
 		private Type[] _dataAdapterType = new Type[] { 
-								typeof(SqlDataAdapter),
-								typeof(MySQLDataAdapter),
-								typeof(OleDbDataAdapter),
-								typeof(NpgsqlDataAdapter) };
+														 typeof(SqlDataAdapter),
+														 typeof(MySQLDataAdapter),
+														 typeof(OleDbDataAdapter),
+														 typeof(NpgsqlDataAdapter), 
+														 typeof(OracleDataAdapter) 
+		                                             };
 		private Type[] _paramenterType = new Type[] { 
-								typeof(SqlParameter),
-								typeof(MySQLParameter), 
-								typeof(OleDbParameter), 
-								typeof(NpgsqlParameter) };
+														typeof(SqlParameter),
+														typeof(MySQLParameter), 
+														typeof(OleDbParameter), 
+														typeof(NpgsqlParameter),
+														typeof(OracleParameter)
+		                                            } ;						
 		#endregion
 
 		#region Constructor
@@ -69,6 +78,9 @@ namespace iCodeGenerator.GenericDataAccess
 					break;
 				case "postgressql":
 					_providerType = DataProviderType.PostgresSql;
+					break;
+				case "oracle":
+					_providerType = DataProviderType.Oracle;
 					break;
 			}	
 		}

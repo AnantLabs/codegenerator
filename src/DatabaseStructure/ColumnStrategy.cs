@@ -36,7 +36,11 @@ namespace iCodeGenerator.DatabaseStructure
 				_connection.Open();
 			}
 			
+			if (Server.ProviderType != DataProviderType.Oracle)
+			{
 			_connection.ChangeDatabase(table.ParentDatabase.Name);
+			}
+
 			DataSet ds = ColumnSchema(table,_dataAccessProvider,_connection);
 			foreach(DataRow row in ds.Tables[0].Rows)
 			{
@@ -69,8 +73,10 @@ namespace iCodeGenerator.DatabaseStructure
 			{
 				_connection.Open();
 			}
-			
+			if (Server.ProviderType != DataProviderType.Oracle)
+			{
 			_connection.ChangeDatabase(table.ParentDatabase.Name);
+			}
 			DataSet ds = KeySchema(table,_dataAccessProvider,_connection);
 			foreach(DataRow row in ds.Tables[0].Rows)
 			{

@@ -20,7 +20,6 @@ namespace iCodeGenerator.DatabaseStructure
 			return ds;
 		}
 
-		/* Add by Ferhat */
 		protected override DataSet ViewSchema(DataAccessProviderFactory dataAccessProvider, IDbConnection connection)
 		{
 			DataSet ds = new DataSet();

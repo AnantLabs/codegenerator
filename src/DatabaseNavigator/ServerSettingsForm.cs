@@ -47,6 +47,8 @@ namespace iCodeGenerator.DatabaseNavigator
 			uiProviderTypeSelection.Items.Add(new DataAccessProviderInfo(DataProviderType.SqlClient));
 			uiProviderTypeSelection.Items.Add(new DataAccessProviderInfo(DataProviderType.MySql));
 			uiProviderTypeSelection.Items.Add(new DataAccessProviderInfo(DataProviderType.PostgresSql));
+			uiProviderTypeSelection.Items.Add(new DataAccessProviderInfo(DataProviderType.Oracle));
+
 			uiProviderTypeSelection.DisplayMember = "Name";
 		}
 

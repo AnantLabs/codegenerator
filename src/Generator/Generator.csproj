@@ -144,11 +144,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Expressions\CaseNameExpressionBase.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Expressions\ColumnDefaultExpression.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
