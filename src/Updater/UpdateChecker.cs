@@ -76,7 +76,7 @@ namespace iCodeGenerator.Updater
 					_ChangeLogURL = "";
 				}				
 			}
-			catch (Exception e)
+			catch 
 			{
 				Debug.WriteLine("Failed to read file at " + url);
 				return false;
