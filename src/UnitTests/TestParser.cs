@@ -104,7 +104,7 @@ SET @{COLUMN.NAME} = @{COLUMN.NAME}
 			ColumnsExpression columns = new ColumnsExpression();			
 			columns.AddExpression(new ColumnNameExpression());
 			columns.AddExpression(new ColumnTypeExpression());
-			columns.AddExpression(new ColumnLenghtExpression());
+			columns.AddExpression(new ColumnLengthExpression());
 			columns.AddExpression(new ColumnIfExpression());
 			_parser.AddExpression(columns);
 			_parser.AddExpression(new TableNameExpression());
@@ -229,5 +229,6 @@ LAST{/IF}
 			_parser.Interpret(_context);
 //			Console.WriteLine(_context.Output);
 		}
+		
 	}	
 }

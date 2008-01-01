@@ -12,12 +12,8 @@ namespace iCodeGenerator.Generator
 
 		protected IDictionary Mappings
 		{
-			get
-			{
-				return manager.SelectedLanguage.Mappings;
-			}
+			get { return manager.SelectedLanguage.Mappings; }
 		}
-
 
 		public ColumnMapTypeExpression() : base()
 		{

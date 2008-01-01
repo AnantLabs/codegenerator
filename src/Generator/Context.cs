@@ -2,8 +2,8 @@ namespace iCodeGenerator.Generator
 {
 	public class Context
 	{
-		private static string _startDelimeter;
-		private static string _endingDelimiter;
+		private static string _startDelimeter = "{";
+		private static string _endingDelimiter = "}";
 
 		public static string StartDelimeter
 		{

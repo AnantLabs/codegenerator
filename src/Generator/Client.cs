@@ -9,7 +9,7 @@ namespace iCodeGenerator.Generator
 		private Context _context;
 		private Table _table;
 		private IDictionary _CustomValues;
-		
+
 		public string StartDelimiter
 		{
 			get{ return Context.StartDelimeter; }
@@ -25,13 +25,11 @@ namespace iCodeGenerator.Generator
 			get { return _CustomValues; }
 			set { _CustomValues = value; }
 		}
-
 		public Table Table
 		{
 			get { return _table; }
 			set { _table = value; }
 		}
-
 		public string Input
 		{
 			set{ _context.Input = value; }
@@ -40,12 +38,9 @@ namespace iCodeGenerator.Generator
 		public Client()
 		{
 			_context = new Context();
-			Context.StartDelimeter = "{";
-			Context.EndingDelimiter = "}";
 		}
 
 		public event EventHandler OnComplete;
-
 		protected void CompleteNotifier(EventArgs e)
 		{
 			if (OnComplete != null)
@@ -76,7 +71,7 @@ namespace iCodeGenerator.Generator
 			columnsExp.AddExpression(new ColumnIfTypeExpression());
 			columnsExp.AddExpression(new ColumnNameExpression());
 			columnsExp.AddExpression(new ColumnTypeExpression());
-			columnsExp.AddExpression(new ColumnLenghtExpression());
+			columnsExp.AddExpression(new ColumnLengthExpression());
 			columnsExp.AddExpression(new ColumnDefaultExpression());
 			columnsExp.AddExpression(new ColumnMapTypeExpression());
 			columnsExp.AddExpression(new ColumnIfExpression());

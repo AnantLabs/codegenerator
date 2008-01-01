@@ -3,9 +3,9 @@ using iCodeGenerator.DatabaseStructure;
 
 namespace iCodeGenerator.Generator
 {
-	public class ColumnLenghtExpression : Expression
+	public class ColumnLengthExpression : Expression
 	{
-		public ColumnLenghtExpression()
+		public ColumnLengthExpression()
 		{
 		}
 

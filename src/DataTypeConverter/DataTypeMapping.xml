@@ -18,10 +18,4 @@
 		<SqlType name="datetime">DateTime</SqlType>
 		<SqlType name="image">Image</SqlType>
 	</Language>
-	<Language name="Java" selected="false">
-		<SqlType name="int">int</SqlType>
-		<SqlType name="bigint">int</SqlType>
-		<SqlType name="smallint">int</SqlType>
-		<SqlType name="tinyint">int</SqlType>
-	</Language>
 </DataTypes>

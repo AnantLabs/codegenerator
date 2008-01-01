@@ -39,6 +39,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationManager", "ConfigurationManager\ConfigurationManager.csproj", "{602DADFC-CA31-40A3-A07A-620808DD83BD}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		AutomatedDebug = AutomatedDebug
@@ -103,6 +107,12 @@ Global
 		{CF78DCA4-978C-4AD4-A087-576926D6F075}.Debug.Build.0 = Debug|.NET
 		{CF78DCA4-978C-4AD4-A087-576926D6F075}.Release.ActiveCfg = Release|.NET
 		{CF78DCA4-978C-4AD4-A087-576926D6F075}.Release.Build.0 = Release|.NET
+		{602DADFC-CA31-40A3-A07A-620808DD83BD}.AutomatedDebug.ActiveCfg = Debug|.NET
+		{602DADFC-CA31-40A3-A07A-620808DD83BD}.AutomatedDebug.Build.0 = Debug|.NET
+		{602DADFC-CA31-40A3-A07A-620808DD83BD}.Debug.ActiveCfg = Debug|.NET
+		{602DADFC-CA31-40A3-A07A-620808DD83BD}.Debug.Build.0 = Debug|.NET
+		{602DADFC-CA31-40A3-A07A-620808DD83BD}.Release.ActiveCfg = Release|.NET
+		{602DADFC-CA31-40A3-A07A-620808DD83BD}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
 		..\CHANGELOG.txt = ..\CHANGELOG.txt

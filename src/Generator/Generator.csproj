@@ -164,7 +164,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Expressions\ColumnLenghtExpression.cs"
+                    RelPath = "Expressions\ColumnLengthExpression.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

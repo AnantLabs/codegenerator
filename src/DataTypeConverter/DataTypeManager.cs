@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.IO;
 using System.Xml;
 using System.Xml.XPath;
+using iCodeGenerator.ConfigurationManager;
 
 namespace iCodeGenerator.DataTypeConverter
 {
@@ -23,7 +25,7 @@ namespace iCodeGenerator.DataTypeConverter
 		public DataTypeManager(string uri)
 		{
 			_Uri = uri;
-			if(!File.Exists(_Uri))
+			if(DataMappingFileExists())
 			{
 				_Uri = @"C:\temp\" + "DataTypeMapping.xml";
 			}
@@ -37,6 +39,11 @@ namespace iCodeGenerator.DataTypeConverter
 				throw new DataTypeManagerException("Error Loading Data Mapping Values",ex);
 			}
 
+		}
+
+		private static bool DataMappingFileExists()
+		{
+			return !File.Exists(_Uri);
 		}
 
 		public LanguageCollection Languages
@@ -67,5 +74,19 @@ namespace iCodeGenerator.DataTypeConverter
 			}
 		}
 
+		public IDictionary Mappings
+		{
+			get
+			{
+				if(DataMappingFileExists())
+				{
+					return SelectedLanguage.Mappings;
+				}
+				else
+				{
+					return Configuration.Instance.DataTypes;
+				}
+			}
+		}
 	}
 }

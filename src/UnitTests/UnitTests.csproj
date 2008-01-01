@@ -129,12 +129,22 @@
                     Project = "{B8DCA4DB-BA7C-4FA9-AFFE-CB8D9FE6CFFC}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "ConfigurationManager"
+                    Project = "{602DADFC-CA31-40A3-A07A-620808DD83BD}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
             <Include>
                 <File
                     RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "TestConfiguration.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
