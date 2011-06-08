@@ -14,11 +14,11 @@ namespace iCodeGenerator.DatabaseStructure
 
 		protected override DataSet TableSchema(DataAccessProviderFactory dataProvider, IDbConnection connection, Database database)
 		{
-			DataSet ds = new DataSet();
+			var ds = new DataSet();
 			
-			IDbCommand sqlString = dataProvider.CreateCommand("SELECT OWNER, TABLE_NAME FROM all_tables where OWNER = '" + database.Name + "'",connection);
+			var sqlString = dataProvider.CreateCommand("SELECT OWNER, TABLE_NAME FROM all_tables where OWNER = '" + database.Name + "'",connection);
 			sqlString.CommandType = CommandType.Text;
-			IDbDataAdapter da = dataProvider.CreateDataAdapter();
+			var da = dataProvider.CreateDataAdapter();
 			da.SelectCommand = sqlString;
 			da.Fill(ds);
 			
@@ -27,10 +27,11 @@ namespace iCodeGenerator.DatabaseStructure
 
 		protected override Table CreateTable(Database database, DataRow row)
 		{
-			Table table = new Table();
+			var table = new Table();
 			
 			table.ParentDatabase = database;
 			table.Name = row["table_name"].ToString();
+		    table.Schema = string.Empty;
 
 			return table;
 		}

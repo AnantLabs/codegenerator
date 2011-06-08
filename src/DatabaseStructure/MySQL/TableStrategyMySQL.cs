@@ -7,10 +7,10 @@ namespace iCodeGenerator.DatabaseStructure
 	{		
 		protected override DataSet TableSchema(DataAccessProviderFactory dataAccessProvider, IDbConnection connection)
 		{
-			DataSet ds = new DataSet();
-			IDbCommand sqlString = dataAccessProvider.CreateCommand("show tables", connection);
+			var ds = new DataSet();
+			var sqlString = dataAccessProvider.CreateCommand("show tables", connection);
 			sqlString.CommandType = CommandType.Text;
-			IDbDataAdapter da = dataAccessProvider.CreateDataAdapter();
+			var da = dataAccessProvider.CreateDataAdapter();
 			da.SelectCommand = sqlString;
 			da.Fill(ds);
 			return ds;
@@ -18,14 +18,15 @@ namespace iCodeGenerator.DatabaseStructure
 
 		protected override DataSet ViewSchema(DataAccessProviderFactory dataAccessProvider, IDbConnection connection)
 		{
-			DataSet ds = new DataSet();
+			var ds = new DataSet();
 			return ds;
 		}
 		protected override Table CreateTable(Database database, DataRow row)
 		{
-			Table table = new Table();
+			var table = new Table();
 			table.ParentDatabase = database;
 			table.Name = row[0].ToString();
+		    table.Schema = string.Empty;
 			return table;
 		}
 	}

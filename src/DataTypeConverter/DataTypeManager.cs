@@ -36,7 +36,7 @@ namespace iCodeGenerator.DataTypeConverter
 			}
 			catch (Exception ex)
 			{
-				throw new DataTypeManagerException("Error Loading Data Mapping Values",ex);
+				throw new DataTypeManagerException(string.Format("Error Loading Data Mapping Values. File expected at {0}",_Uri),ex);
 			}
 
 		}

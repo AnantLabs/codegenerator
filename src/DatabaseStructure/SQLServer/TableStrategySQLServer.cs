@@ -7,40 +7,40 @@ namespace iCodeGenerator.DatabaseStructure
 	{
 		protected override DataSet TableSchema(DataAccessProviderFactory dataAccessProvider, IDbConnection connection)
 		{
-			DataSet ds = new DataSet();
-			IDbCommand sqlSp = dataAccessProvider.CreateCommand("sp_tables", connection);
-			sqlSp.CommandType = CommandType.StoredProcedure;
-			IDbDataParameter param = dataAccessProvider.CreateParameter();
-			param.ParameterName = "@table_type";
-			param.Value = "'TABLE'";
-			sqlSp.Parameters.Add(param);
-			IDbDataAdapter da = dataAccessProvider.CreateDataAdapter();
-			da.SelectCommand = sqlSp;
+			var ds = new DataSet();
+		    var sqlQry = dataAccessProvider.CreateCommand("SELECT s.name AS [SCHEMA], t.name AS [NAME], t.type AS type " +
+                            "FROM sys.tables t " +
+                            "INNER JOIN sys.schemas s ON t.schema_id = s.schema_id " +
+                            "ORDER BY s.name, t.name",connection);			
+		    sqlQry.CommandType = CommandType.Text;
+			var da = dataAccessProvider.CreateDataAdapter();
+			da.SelectCommand = sqlQry;
 			da.Fill(ds);
 			return ds;
 		}
 
 		protected override DataSet ViewSchema(DataAccessProviderFactory dataAccessProvider, IDbConnection connection)
 		{
-			DataSet ds = new DataSet();
-			IDbCommand sqlSp = dataAccessProvider.CreateCommand("sp_tables", connection);
-			sqlSp.CommandType = CommandType.StoredProcedure;
-			IDbDataParameter param = dataAccessProvider.CreateParameter();
-			param.ParameterName = "@table_type";
-			param.Value = "'VIEW'";
-			sqlSp.Parameters.Add(param);
-			IDbDataAdapter da = dataAccessProvider.CreateDataAdapter();
-			da.SelectCommand = sqlSp;
+			var ds = new DataSet();
+		    var sqlQry = dataAccessProvider.CreateCommand("SELECT s.name AS [SCHEMA], v.name AS [NAME], v.type AS type " +
+                          "FROM sys.views v  " +
+                          "INNER JOIN sys.schemas s ON v.schema_id = s.schema_id " +
+                          "ORDER BY s.name, v.name ", connection);
+		    sqlQry.CommandType = CommandType.Text;
+			var da = dataAccessProvider.CreateDataAdapter();
+			da.SelectCommand = sqlQry;
 			da.Fill(ds);
 			return ds;
 		}
 
 		protected override Table CreateTable(Database database, DataRow row)
 		{
-			Table table = new Table();
-			table.ParentDatabase = database;
-			table.Name = row["TABLE_NAME"].ToString();
-			return table;
+			var table = new Table {
+                ParentDatabase = database, 
+                Schema = row["SCHEMA"].ToString(), 
+                Name = row["NAME"].ToString()
+            };
+		    return table;
 		}
 	}
 }

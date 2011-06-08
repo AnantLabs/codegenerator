@@ -5,11 +5,7 @@ namespace iCodeGenerator.DatabaseStructure
 {
 	public class TableCollection : CollectionBase
 	{
-		public TableCollection()
-		{
-		}
-
-		public Table this[int index]
+	    public Table this[int index]
 		{
 			get{ return (Table) List[index]; }
 			set{ List[index] = value; }

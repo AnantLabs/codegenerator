@@ -162,14 +162,13 @@ namespace iCodeGenerator.iCodeGeneratorGui
 
 		private void UpdateCheckerThread()
 		{
-			Thread thread = new Thread(new ThreadStart(CheckUpdates));
-			thread.IsBackground = true;
-			thread.Start();
+			var thread = new Thread(CheckUpdates) {IsBackground = true};
+		    thread.Start();
 		}
 
 		private void CheckUpdates()
 		{
-			UpdateChecker checker = new UpdateChecker();
+			var checker = new UpdateChecker();
 			if (checker.LoadConfiguration("http://codegenerator.sourceforge.net/iCodeGenerator.php?id=" + Version))
 			{
 				if (checker.Version != Version)

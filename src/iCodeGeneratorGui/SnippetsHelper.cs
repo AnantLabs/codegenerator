@@ -20,6 +20,7 @@ namespace iCodeGenerator.iCodeGeneratorGui
 		{
 			AddDatabaseName();
 			AddTableName();
+            AddTableSchema();
 			AddColumnType();
 			AddIfColumnName();
 			AddMapColumnType();
@@ -32,7 +33,16 @@ namespace iCodeGenerator.iCodeGeneratorGui
 			AddTableColumns();
 		}
 
-		private void AddTableName()
+	    private void AddTableSchema()
+	    {
+            _htSnippets.Add("{TABLE.SCHEMA...",
+                            Context.StartDelimeter
+                            + "TABLE.SCHEMA"
+                            + Context.EndingDelimiter
+                );
+	    }
+
+	    private void AddTableName()
 		{
 				_htSnippets.Add("{TABLE.NAME...",
 			                Context.StartDelimeter 

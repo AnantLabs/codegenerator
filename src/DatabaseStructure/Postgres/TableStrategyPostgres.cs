@@ -1,6 +1,5 @@
 using System.Data;
 using iCodeGenerator.GenericDataAccess;
-using iCodeGenerator.DatabaseStructure;
 
 namespace iCodeGenerator.DatabaseStructure
 {
@@ -8,10 +7,10 @@ namespace iCodeGenerator.DatabaseStructure
 	{
 		protected override DataSet TableSchema(DataAccessProviderFactory dataProvider, IDbConnection connection)
 		{
-			DataSet ds = new DataSet();
-			IDbCommand sqlString = dataProvider.CreateCommand("SELECT tablename FROM pg_tables WHERE schemaname = 'public'",connection);
+			var ds = new DataSet();
+			var sqlString = dataProvider.CreateCommand("SELECT tablename FROM pg_tables WHERE schemaname = 'public'",connection);
 			sqlString.CommandType = CommandType.Text;
-			IDbDataAdapter da = dataProvider.CreateDataAdapter();
+			var da = dataProvider.CreateDataAdapter();
 			da.SelectCommand = sqlString;
 			da.Fill(ds);
 			return ds;
@@ -23,9 +22,10 @@ namespace iCodeGenerator.DatabaseStructure
 		}
 		protected override Table CreateTable(Database database, DataRow row)
 		{
-			Table table = new Table();
+			var table = new Table();
 			table.ParentDatabase = database;
 			table.Name = row["tablename"].ToString();
+		    table.Schema = string.Empty;
 			return table;
 		}
 	}

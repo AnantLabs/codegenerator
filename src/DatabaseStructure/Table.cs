@@ -6,66 +6,56 @@ namespace iCodeGenerator.DatabaseStructure
 {
 	public class Table
 	{
-		private string _name;
-		private Database _parentDatabase;
-		private ColumnStrategy _strategy;
-		private bool _reload;
-		private ColumnCollection _columns;
-		private KeyCollection _keys;
+	    private readonly ColumnStrategy _strategy;
+		private bool _Reload;
+		private ColumnCollection _Columns;
+		private KeyCollection _Keys;
 
 		public void Reload()
 		{
-			_reload = true;			
+			_Reload = true;			
 		}
 
 		public Table()
 		{
-			if(Server.ProviderType == DataProviderType.SqlClient)
-			{
-				_strategy = new ColumnStrategySQLServer();
-			}
-			else if(Server.ProviderType == DataProviderType.MySql)
-			{
-				_strategy = new ColumnStrategyMySQL();
-			}
-			else if(Server.ProviderType == DataProviderType.PostgresSql)
-			{
-				_strategy = new ColumnStrategyPostgres();
-			}
-			else if(Server.ProviderType == DataProviderType.Oracle)
-			{
-				_strategy = new ColumnStrategyOracle();
-			}
+		    switch (Server.ProviderType)
+		    {
+		        case DataProviderType.SqlClient:
+		            _strategy = new ColumnStrategySQLServer();
+		            break;
+		        case DataProviderType.MySql:
+		            _strategy = new ColumnStrategyMySQL();
+		            break;
+		        case DataProviderType.PostgresSql:
+		            _strategy = new ColumnStrategyPostgres();
+		            break;
+		        case DataProviderType.Oracle:
+		            _strategy = new ColumnStrategyOracle();
+		            break;
+		    }
 		}
 
-		[CategoryAttribute("Table"),
-		ReadOnlyAttribute(true)]
-		public string Name
-		{
-			get { return _name; }
-			set { _name = value; }
-		}
+        [CategoryAttribute("Table"), ReadOnlyAttribute(true)]
+        public string Schema { get; set; }
 
-		[BrowsableAttribute(false),
-		DefaultValueAttribute(false)]
-		public Database ParentDatabase
-		{
-			get { return _parentDatabase; }
-			set { _parentDatabase = value; }
-		}
+	    [CategoryAttribute("Table"), ReadOnlyAttribute(true)]
+	    public string Name { get; set; }
 
-		[BrowsableAttribute(false),
+	    [BrowsableAttribute(false), DefaultValueAttribute(false)]
+	    public Database ParentDatabase { get; set; }
+
+	    [BrowsableAttribute(false),
 		DefaultValueAttribute(false)]
 		public ColumnCollection Columns
 		{
 			get
 			{
-				if(_reload || _columns == null)
+				if(_Reload || _Columns == null)
 				{					
-					if(_columns != null) _columns.Clear();
-					_columns = _strategy.GetColumns(this);
+					if(_Columns != null) _Columns.Clear();
+					_Columns = _strategy.GetColumns(this);
 				}
-				return _columns;
+				return _Columns;
 			}
 		}
 
@@ -75,12 +65,12 @@ namespace iCodeGenerator.DatabaseStructure
 		{
 			get
 			{
-				if(_reload || _keys == null)
+				if(_Reload || _Keys == null)
 				{				
-					if(_keys != null) _keys.Clear();
-					_keys = _strategy.GetKeys(this);
+					if(_Keys != null) _Keys.Clear();
+					_Keys = _strategy.GetKeys(this);
 				}
-				return _keys;
+				return _Keys;
 			}
 		}				
 	}

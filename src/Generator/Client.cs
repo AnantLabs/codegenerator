@@ -6,8 +6,8 @@ namespace iCodeGenerator.Generator
 {
 	public class Client
 	{
-		private Context _context;
-		private Table _table;
+		private readonly Context _Context;
+		private Table _Table;
 		private IDictionary _CustomValues;
 
 		public string StartDelimiter
@@ -27,19 +27,17 @@ namespace iCodeGenerator.Generator
 		}
 		public Table Table
 		{
-			get { return _table; }
-			set { _table = value; }
+			get { return _Table; }
+			set { _Table = value; }
 		}
 		public string Input
 		{
-			set{ _context.Input = value; }
+			set{ _Context.Input = value; }
 		}
-
 		public Client()
 		{
-			_context = new Context();
+			_Context = new Context();
 		}
-
 		public event EventHandler OnComplete;
 		protected void CompleteNotifier(EventArgs e)
 		{
@@ -50,24 +48,22 @@ namespace iCodeGenerator.Generator
 		}
 		public string Parse()
 		{
-			string s = Intrepret();
+			var s = Intrepret();
 			CompleteNotifier(new EventArgs());
 			return s;			
 		}
-
 		public string Parse(Table table,string inputString)
 		{
-			_table = table;
-			_context.Input = inputString;
+			_Table = table;
+			_Context.Input = inputString;
 			string s = Intrepret();
 			CompleteNotifier(new EventArgs());
 			return s;
 		}
-
 		private string Intrepret()
 		{
-			Parser parser = new Parser(_table);						
-			ColumnsExpression columnsExp = new ColumnsExpression();
+			var parser = new Parser(_Table);						
+			var columnsExp = new ColumnsExpression();
 			columnsExp.AddExpression(new ColumnIfTypeExpression());
 			columnsExp.AddExpression(new ColumnNameExpression());
 			columnsExp.AddExpression(new ColumnTypeExpression());
@@ -79,6 +75,7 @@ namespace iCodeGenerator.Generator
 			columnsExp.AddExpression(new ColumnNameMatchesExpression()); 
 			parser.AddExpression(columnsExp);
 			parser.AddExpression(new TableNameExpression());
+            parser.AddExpression(new TableSchemaExpression());
 			parser.AddExpression(new DatabaseNameExpression());
 			if(_CustomValues != null)
 			{
@@ -87,8 +84,8 @@ namespace iCodeGenerator.Generator
 					parser.AddExpression(new LiteralExpression(entry.Key.ToString(),entry.Value.ToString()));		
 				}
 			}
-			parser.Interpret(_context);
-			return _context.Output;
+			parser.Interpret(_Context);
+			return _Context.Output;
 		}
 	}
 }

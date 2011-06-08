@@ -8,9 +8,9 @@ namespace iCodeGenerator.DatabaseStructure
 	{
 		protected internal TableCollection GetTables(Database database)
 		{
-			TableCollection tables = new TableCollection();
-			DataAccessProviderFactory dataAccessProviderFactory = new DataAccessProviderFactory(Server.ProviderType);
-			IDbConnection connection = dataAccessProviderFactory.CreateConnection(Server.ConnectionString);
+			var tables = new TableCollection();
+			var dataAccessProviderFactory = new DataAccessProviderFactory(Server.ProviderType);
+			var connection = dataAccessProviderFactory.CreateConnection(Server.ConnectionString);
 			if(connection.State == ConnectionState.Closed)
 			{
 				connection.Open();	
@@ -43,15 +43,15 @@ namespace iCodeGenerator.DatabaseStructure
 		/* Add by Ferhat */
 		protected internal TableCollection GetViews(Database database)
 		{
-			TableCollection tables = new TableCollection();
-			DataAccessProviderFactory dataAccessProviderFactory = new DataAccessProviderFactory(Server.ProviderType);
-			IDbConnection connection = dataAccessProviderFactory.CreateConnection(Server.ConnectionString);
+			var tables = new TableCollection();
+			var dataAccessProviderFactory = new DataAccessProviderFactory(Server.ProviderType);
+			var connection = dataAccessProviderFactory.CreateConnection(Server.ConnectionString);
 			if (connection.State == ConnectionState.Closed)
 			{
 				connection.Open();
 			}
 			connection.ChangeDatabase(database.Name);
-			DataSet ds = ViewSchema(dataAccessProviderFactory, connection);
+			var ds = ViewSchema(dataAccessProviderFactory, connection);
 			connection.Close();
 			if (ds.Tables.Count > 0)
 			{

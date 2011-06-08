@@ -2,46 +2,25 @@ namespace iCodeGenerator.Generator
 {
 	public class Context
 	{
-		private static string _startDelimeter = "{";
-		private static string _endingDelimiter = "}";
+		private static string _StartDelimeter = "{";
+		private static string _EndingDelimiter = "}";
 
 		public static string StartDelimeter
 		{
-			get { return _startDelimeter; }
-			set { _startDelimeter = value; }
+			get { return _StartDelimeter; }
+			set { _StartDelimeter = value; }
 		}
 
 		public static string EndingDelimiter
 		{
-			get { return _endingDelimiter; }
-			set { _endingDelimiter = value; }
+			get { return _EndingDelimiter; }
+			set { _EndingDelimiter = value; }
 		}
 
-		private string _input;
-		private string _output;
+	    public string Input { get; set; }
 
-		public string Input
-		{
-			get { return _input; }
-			set {_input = value; }
-		}
+	    public string Output { get; set; }
 
-		public string Output
-		{
-			get { return _output; }
-			set { _output = value; }
-		}
-
-		private object _extra;
-
-		internal object Extra
-		{
-			set { _extra = value; }
-			get { return _extra; }
-		}
-		
-		public Context()
-		{
-		}
+	    internal object Extra { get; set; }
 	}
 }
