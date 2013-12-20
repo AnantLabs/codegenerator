@@ -2,19 +2,19 @@ namespace iCodeGenerator.Generator
 {
 	public class Context
 	{
-		private static string _StartDelimeter = "{";
-		private static string _EndingDelimiter = "}";
+		private static string _startDelimeter = "{";
+		private static string _endingDelimiter = "}";
 
 		public static string StartDelimeter
 		{
-			get { return _StartDelimeter; }
-			set { _StartDelimeter = value; }
+			get { return _startDelimeter; }
+			set { _startDelimeter = value; }
 		}
 
 		public static string EndingDelimiter
 		{
-			get { return _EndingDelimiter; }
-			set { _EndingDelimiter = value; }
+			get { return _endingDelimiter; }
+			set { _endingDelimiter = value; }
 		}
 
 	    public string Input { get; set; }

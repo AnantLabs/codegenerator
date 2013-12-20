@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using iCodeGenerator.GenericDataAccess;
 using iCodeGenerator.DatabaseStructure;
-using TD.SandBar;
 
 namespace iCodeGenerator.DatabaseNavigator
 {
@@ -24,9 +23,11 @@ namespace iCodeGenerator.DatabaseNavigator
 		private TreeView uiNavigatorTreeView;
 		private IContainer components;
 
+        /*
 		private ShortcutListener _shortcuts = null;
 		private MenuBar _menuBar = null;
 		private ContextMenuBarItem _contextMenu = null;
+        */
 		private ImageList uiNavigatorImageList;
 
 		private TreeNode _rootNode;
@@ -52,6 +53,9 @@ namespace iCodeGenerator.DatabaseNavigator
 			InitializeComponent();
 			InitializeMenu();
 			InitializeTree();
+		    
+
+
 		}
 
 		private void InitializeTree()
@@ -65,21 +69,25 @@ namespace iCodeGenerator.DatabaseNavigator
 
 		private void InitializeMenu()
 		{
-			_shortcuts = new ShortcutListener();
-			_menuBar = new MenuBar();
-			
-	
 			SetDefaultMenu();
-			_shortcuts.UpdateAcceleratorTable(new TopLevelMenuItemBase[] { _contextMenu });
-	
-			_menuBar.Buttons.Add(_contextMenu);
-			_menuBar.SetSandBarMenu(this, _contextMenu);
 		}
 
 
 		// Server Activate
 		private void SetDefaultMenu()
 		{
+            var contextMenu = new ContextMenu();
+		    var miConnect = new MenuItem("Connect");
+			miConnect.Click += connect_Activate;
+		    var miDisconnect = new MenuItem("Disconnect");
+		    miDisconnect.Click += disconnect_Activate;
+		    var miEditConnection = new MenuItem("Edit Connection");
+		    miEditConnection.Click += serverEdit_Activate;
+		    contextMenu.MenuItems.Add(miConnect);
+		    contextMenu.MenuItems.Add(miDisconnect);
+		    contextMenu.MenuItems.Add(miEditConnection);
+		    ContextMenu = contextMenu;
+            /*
 			if(_contextMenu == null)
 			{
 				_contextMenu = new ContextMenuBarItem();
@@ -92,6 +100,7 @@ namespace iCodeGenerator.DatabaseNavigator
 			MenuButtonItem edit = new MenuButtonItem("Edit");
 			edit.Activate += new EventHandler(serverEdit_Activate);
 			_contextMenu.MenuItems.AddRange(new MenuButtonItem[] { connect, edit, disconnect });
+            */
 			//contextMenu.MenuItems[1].Shortcut = Shortcut.CtrlJ;
 		}
 
@@ -155,13 +164,15 @@ namespace iCodeGenerator.DatabaseNavigator
 		// Database Activate
 		private void SetDatabaseMenu()
 		{
-			_contextMenu.MenuItems.Clear();
-			MenuButtonItem open = new MenuButtonItem("Open");
-			open.Activate += new EventHandler(databaseOpen_Activate);
-			_contextMenu.MenuItems.AddRange(new MenuButtonItem[] { open });
+		    var contextMenu = new ContextMenu();
+		    var miOpen = new MenuItem("Open");
+		    miOpen.Click += databaseOpen_Activate;
+		    contextMenu.MenuItems.Add(miOpen);
+		    ContextMenu = contextMenu;
+
 		}
 
-		private void databaseOpen_Activate(object sender, EventArgs e)
+	    private void databaseOpen_Activate(object sender, EventArgs e)
 		{
 			OpenSelectedDatabase();
 		}
@@ -200,13 +211,15 @@ namespace iCodeGenerator.DatabaseNavigator
 		// Table Activate
 		private void SetTableMenu()
 		{
-			_contextMenu.MenuItems.Clear();
-			MenuButtonItem open = new MenuButtonItem("Open");
-			open.Activate += new EventHandler(tableOpen_Activate);
-			_contextMenu.MenuItems.AddRange( new MenuButtonItem[] { open } );
+		    var contextMenu = new ContextMenu();
+		    var miOpen = new MenuItem("Open");
+		    miOpen.Click += tableOpen_Activate;
+		    contextMenu.MenuItems.Add(miOpen);
+		    ContextMenu = contextMenu;
+
 		}
 
-		private void tableOpen_Activate(object sender, EventArgs e)
+	    private void tableOpen_Activate(object sender, EventArgs e)
 		{
 			OpenSelectedTable();
 		}
@@ -228,15 +241,17 @@ namespace iCodeGenerator.DatabaseNavigator
 		// Column Activate
 		private void SetColumnMenu()
 		{
-			_contextMenu.MenuItems.Clear();
-			MenuButtonItem remove = new MenuButtonItem("Remove");
-			remove.Activate += new EventHandler(columnRemove_Activate);
-			MenuButtonItem showProperties = new MenuButtonItem("Properties");
-			showProperties.Activate += new EventHandler(columnShowProperties);
-			_contextMenu.MenuItems.AddRange( new MenuButtonItem[] { remove,showProperties } );
+		    var contextMenu = new ContextMenu();
+		    var miProperties = new MenuItem("Properties");
+		    miProperties.Click += columnShowProperties;
+		    contextMenu.MenuItems.Add(miProperties);
+		    var miRemove = new MenuItem("Remove");
+		    miRemove.Click += columnRemove_Activate;
+		    contextMenu.MenuItems.Add(miRemove);
+		    ContextMenu = contextMenu;
 		}
 
-		private void columnShowProperties(object sender, EventArgs e)
+	    private void columnShowProperties(object sender, EventArgs e)
 		{
 			Column column = (Column)uiNavigatorTreeView.SelectedNode.Tag;
 			OnColumnShowProperties(new ColumnEventArgs(column));
@@ -253,8 +268,10 @@ namespace iCodeGenerator.DatabaseNavigator
 
 		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
 		{
+            /*
 			if(_shortcuts.ShortcutActivated(keyData))
 				return true;
+             */
 
 			return base.ProcessCmdKey (ref msg, keyData);
 		}
@@ -267,9 +284,11 @@ namespace iCodeGenerator.DatabaseNavigator
 				{
 					components.Dispose();
 				}
+                /*
 				_shortcuts.Dispose();
 				_menuBar.SetSandBarMenu(this,null);
 				_menuBar.Dispose();
+                */
 			}
 			base.Dispose( disposing );
 		}

@@ -30,17 +30,6 @@ namespace iCodeGenerator.iCodeGeneratorGui
 			// Required for Windows Form Designer support
 			//
 			InitializeComponent();
-
-			if(MainWindow.InputTemplateFolder.Length > 0)
-			{
-				uiInputFolderSelectedTextBox.Text = MainWindow.InputTemplateFolder;
-				uiInputFolderDialog.SelectedPath = MainWindow.InputTemplateFolder;
-			}
-			if(MainWindow.OutputTemplateFolder.Length > 0)
-			{
-				uiOutputFolderSelectedTextBox.Text = MainWindow.OutputTemplateFolder;
-				uiOutputFolderDialog.SelectedPath = MainWindow.OutputTemplateFolder;
-			}
 		}
 
 		/// <summary>
@@ -193,9 +182,29 @@ namespace iCodeGenerator.iCodeGeneratorGui
 
 		private void uiOkButton_Click(object sender, EventArgs e)
 		{
-			MainWindow.InputTemplateFolder = uiInputFolderSelectedTextBox.Text.Trim();
-			MainWindow.OutputTemplateFolder = uiOutputFolderSelectedTextBox.Text.Trim();
+            OnInputFolderSelected(new FolderEventArgs(uiInputFolderSelectedTextBox.Text.Trim()));
+            OnOutputFolderSelected(new FolderEventArgs(uiOutputFolderSelectedTextBox.Text.Trim()));
 			Close();
+		}
+        
+		public delegate void FolderEventHandler(object sender, FolderEventArgs args);
+
+		public event FolderEventHandler InputFolderSelected;
+		public event FolderEventHandler OutputFolderSelected;
+	    protected virtual void OnInputFolderSelected(FolderEventArgs args)
+		{
+			if(InputFolderSelected != null)
+			{
+				InputFolderSelected(this,args);
+			}
+		}
+
+	    protected virtual void OnOutputFolderSelected(FolderEventArgs args)
+		{
+			if(OutputFolderSelected != null)
+			{
+				OutputFolderSelected(this,args);
+			}
 		}
 
 		private void uiCancelButton_Click(object sender, EventArgs e)

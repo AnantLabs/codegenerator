@@ -25,7 +25,7 @@ namespace iCodeGenerator.DataTypeConverter
 		public DataTypeManager(string uri)
 		{
 			_Uri = uri;
-			if(DataMappingFileExists())
+			if(!DataMappingFileExists())
 			{
 				_Uri = @"C:\temp\" + "DataTypeMapping.xml";
 			}
@@ -43,7 +43,7 @@ namespace iCodeGenerator.DataTypeConverter
 
 		private static bool DataMappingFileExists()
 		{
-			return !File.Exists(_Uri);
+			return File.Exists(_Uri);
 		}
 
 		public LanguageCollection Languages
@@ -78,7 +78,7 @@ namespace iCodeGenerator.DataTypeConverter
 		{
 			get
 			{
-				if(DataMappingFileExists())
+				if(!DataMappingFileExists())
 				{
 					return SelectedLanguage.Mappings;
 				}
