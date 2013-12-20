@@ -22,7 +22,7 @@ namespace iCodeGenerator.iCodeGeneratorGui
 		{
 			
 			InitializeComponent();
-			uiCodeGeneratorLabel.Text = uiCodeGeneratorLabel.Text + MainWindow.Version;
+			uiCodeGeneratorLabel.Text = uiCodeGeneratorLabel.Text + "2.0";
 		}
 
 		/// <summary>
