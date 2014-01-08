@@ -18,6 +18,12 @@ namespace iCodeGenerator.DatabaseStructure
 			param.ParameterName = "@table_name";
 			param.Value = table.Name;
 			sqlSp.Parameters.Add(param);
+            IDbDataParameter schemaParameter = dataAccessProvider.CreateParameter();			
+			schemaParameter.Direction = ParameterDirection.Input;
+			schemaParameter.DbType = DbType.String;
+			schemaParameter.ParameterName = "@table_owner";
+			schemaParameter.Value = table.Schema;
+			sqlSp.Parameters.Add(schemaParameter);
 			IDbDataAdapter da = dataAccessProvider.CreateDataAdapter();
 			da.SelectCommand = sqlSp;
 			da.Fill(ds);
@@ -57,6 +63,12 @@ namespace iCodeGenerator.DatabaseStructure
 			param.ParameterName = "@table_name";
 			param.Value = table.Name;
 			sqlSp.Parameters.Add(param);
+            IDbDataParameter schemaParameter = dataAccessProvider.CreateParameter();			
+			schemaParameter.Direction = ParameterDirection.Input;
+			schemaParameter.DbType = DbType.String;
+			schemaParameter.ParameterName = "@table_owner";
+			schemaParameter.Value = table.Schema;
+			sqlSp.Parameters.Add(schemaParameter);
 			IDbDataAdapter da = dataAccessProvider.CreateDataAdapter();
 			da.SelectCommand = sqlSp;
 			da.Fill(dsPkeys);

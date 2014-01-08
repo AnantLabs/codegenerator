@@ -34,6 +34,7 @@ namespace iCodeGenerator.iCodeGeneratorGui
         private void InitializeControls()
         {
             _dnf = new DatabaseNavigationForm();
+            _dnf.Text = "Database Navigation";
             _dnf.Show(dockPanel, DockState.DockLeft);
             _dnf.Icon = Icon.ExtractAssociatedIcon(@"idb.ico");
             _dnf.TableSelected += DnfTableSelected;
@@ -41,6 +42,7 @@ namespace iCodeGenerator.iCodeGeneratorGui
             _dnf.ColumnSelected += DnfColumnSelected;
 
             _sf = new SnippetsForm();
+            _sf.Text = "Snippets";
             _sf.SnippetSelected += SfSnippetSelected;
             _sf.Show(dockPanel, DockState.DockLeftAutoHide);
             _sf.Icon = Icon.ExtractAssociatedIcon(@"isnippet.ico");
@@ -56,10 +58,12 @@ namespace iCodeGenerator.iCodeGeneratorGui
             _rf.Icon = Icon.ExtractAssociatedIcon(@"iresult.ico");
 
             _pf = new PropertiesForm();
+            _pf.Text = "Properties";
             _pf.Show(dockPanel, DockState.DockRight);
             _pf.Icon = Icon.ExtractAssociatedIcon(@"igen.ico");
 
             _cvf = new CustomValuesForm();
+            _cvf.Text = "Custom Values";
             _cvf.Show(dockPanel, DockState.DockRight);
             _cvf.Icon = Icon.ExtractAssociatedIcon(@"icustom.ico");
         }

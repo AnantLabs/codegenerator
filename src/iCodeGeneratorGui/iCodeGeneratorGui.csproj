@@ -6,7 +6,7 @@
     <ProjectGuid>{0BA9AB83-7E8B-4E80-8A79-6F450AFD5336}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>icode.ico</ApplicationIcon>
+    <ApplicationIcon>icode64.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>iCodeGeneratorGui</AssemblyName>
@@ -25,7 +25,13 @@
     <OldToolsVersion>0.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <PublishUrl>publish\</PublishUrl>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ManifestCertificateThumbprint>7A00BC547B4D7131B665454A7BE4970D09D748BF</ManifestCertificateThumbprint>
+    <ManifestKeyFile>iCodeGeneratorGui_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <PublishUrl>C:\Projects\builds\icodegenerator\icodegenerator-20131224-0945\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -35,12 +41,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -262,6 +267,7 @@
     <Content Include="App.ico" />
     <Content Include="DataTypeMapping.xml" />
     <Content Include="icode.ico" />
+    <Content Include="icode64.ico" />
     <Content Include="iCodeLogo.ico" />
     <Content Include="iCodeLogo16.ico" />
   </ItemGroup>
@@ -291,6 +297,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="iCodeGeneratorGui_TemporaryKey.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
